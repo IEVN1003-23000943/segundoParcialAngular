@@ -1,0 +1,7 @@
+.zodiac-img {
+  width: 150px;    /* Ancho fijo deseado */
+  height: 150px;   /* Alto fijo deseado */
+  object-fit: contain; /* Evita que la imagen se deforme si sus proporciones varían */
+  display: block;
+  margin-top: 10px;
+}

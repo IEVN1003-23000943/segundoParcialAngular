@@ -1,0 +1,45 @@
+<div>
+  <h1>Signo Zodiacal Chino</h1>
+  <div>
+    <form action="">
+      <h3>Datos personales</h3>
+      <label>Nombre</label>
+      <input type="text" name="name" id="name" [(ngModel)]="name" placeholder="ingresa tu nombre">
+      <br>
+      <label>Apellido Paterno</label>
+      <input type="text" name="apepa" id="apepa" [(ngModel)]="apepa" placeholder="ingresa tu apellido paterno">
+      <br>
+      <label>Apellido Materno</label>
+      <input type="text" name="apema" id="apema" [(ngModel)]="apema" placeholder="ingresa tu apellido materno">
+      <br>
+      <h3>Fecha de necimiento</h3>
+      <label>Dia</label>
+      <input type="number" name="dia" id="dia" [(ngModel)]="dia" placeholder="dia de nacimiento">
+      <label>Mes</label>
+      <input type="number" name="mes" id="mes" [(ngModel)]="mes" placeholder="mes de nacimiento">
+      <label>Año</label>
+      <input type="number" name="ano" id="ano" [(ngModel)]="ano" placeholder="año de nacimiento">
+      <br>
+      <div>
+        <h3>Sexo</h3>
+        <div>
+          <input type="radio" id="M" name="genero" value="Masculino" [(ngModel)]="genero" />
+          <label for="H">Masculino</label>
+        </div>
+
+        <div>
+          <input type="radio" id="F" name="genero" value="Femenino" [(ngModel)]="genero" />
+          <label for="F">Femenino</label>
+        </div>
+      </div>
+
+      <button (click)="imprimir()" type="button" class="btn btn-primary">imprimir</button>
+    </form>
+    <br>
+    <div>
+      <h2>Respuesta:</h2>
+      <h3>{{respuesta}}</h3>
+      <img [src]="img" alt="Signo del zodiaco" class="zodiac-img">
+    </div>
+  </div>
+</div>
