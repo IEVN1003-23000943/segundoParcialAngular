@@ -1,0 +1,37 @@
+
+
+<form class="max-w-sm mx-auto">
+  <div class="mb-5">
+    <label for="nombre" class="block mb-2.5 text-sm font-medium text-heading">Nombre</label>
+    <input type="text" id="nombre" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body" placeholder="Nombre..." required />
+  </div>
+  <div class="mb-5">
+    <label for="numCompra" class="block mb-2.5 text-sm font-medium text-heading">Compradores</label>
+    <input type="number" id="numCompra" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body" placeholder="cantidad..." required />
+  </div>
+
+<fieldset>
+  <legend class="sr-only">Tarjeta CINECO</legend>
+
+  <div class="flex items-center mb-4">
+    <input id="country-option-1" type="radio" name="countries" value="USA" class="w-4 h-4 text-neutral-primary border-default-medium bg-neutral-secondary-medium rounded-full checked:border-brand focus:ring-2 focus:outline-none focus:ring-brand-subtle border border-default appearance-none" checked>
+    <label for="country-option-1" class="select-none ms-2 text-sm font-medium text-heading">
+      Si
+    </label>
+  </div>
+
+  <div class="flex items-center mb-4">
+    <input id="country-option-2" type="radio" name="countries" value="Germany" class="w-4 h-4 text-neutral-primary border-default-medium bg-neutral-secondary-medium rounded-full checked:border-brand focus:ring-2 focus:outline-none focus:ring-brand-subtle border border-default appearance-none">
+    <label for="country-option-2" class="select-none ms-2 text-sm font-medium text-heading">
+      No
+    </label>
+  </div>
+</fieldset>
+<div class="mb-5">
+    <label for="boletos" class="block mb-2.5 text-sm font-medium text-heading">Boletos</label>
+    <input type="number" id="boletos" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body" placeholder="boleros..." required />
+  </div>
+
+  <button type="submit" class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Procesar</button>
+    <button type="submit" class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Salir</button>
+</form>

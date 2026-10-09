@@ -1,4 +1,4 @@
-export interface Alumno {
+export interface IAlumno {
   matricula:string,
   nombre:string,
   correo:string,
