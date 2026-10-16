@@ -1,0 +1,137 @@
+
+<!-- Tabla -->
+<div class="max-w-6xl mx-auto mt-8">
+
+  <h2 class="mb-4 text-2xl font-bold text-gray-900">
+    Listado de Ventas
+  </h2>
+
+  <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+
+    <table class="w-full text-sm text-left text-gray-500">
+
+      <!-- Encabezado -->
+      <thead class="text-xs text-gray-700 uppercase bg-gray-100">
+        <tr>
+          <th scope="col" class="px-6 py-3">Nombre</th>
+          <th scope="col" class="px-6 py-3">Boletos</th>
+          <th scope="col" class="px-6 py-3">Descuento</th>
+          <th scope="col" class="px-6 py-3">Tar. CINECO</th>
+          <th scope="col" class="px-6 py-3">Total</th>
+          <th scope="col" class="px-6 py-3">Acciones</th>
+        </tr>
+      </thead>
+
+      <!-- Datos -->
+      <tbody>
+        <tr *ngFor="let venta1 of ventas; let i = index" class="bg-white border-b border-gray-200 hover:bg-gray-50">
+
+          <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+            {{ venta1.nombre }}
+          </td>
+
+          <td class="px-6 py-4">
+            {{ venta1.boletos }}
+          </td>
+
+          <td class="px-6 py-4">
+            {{ venta1.descuento }}
+          </td>
+
+          <td class="px-6 py-4">
+            {{ venta1.tarjetaCineco }}
+          </td>
+
+          <td class="px-6 py-4">
+            {{ venta1.total }}
+          </td>
+
+          <td class="px-6 py-4">
+            <div class="flex gap-2">
+
+              <!-- Botón Editar -->
+              <button
+                type="button"
+                class="px-4 py-2 text-sm font-medium text-white bg-green-600 rounded-lg hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300"
+                (click)="editarVenta(i)"
+              >
+                Editar
+              </button>
+
+              <!-- Botón Eliminar -->
+              <button
+                type="button"
+                class="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300"
+                (click)="eliminarVenta(i)"
+              >
+                Eliminar
+              </button>
+
+            </div>
+          </td>
+
+        </tr>
+      </tbody>
+
+    </table>
+
+  </div>
+
+  <!-- Mensaje cuando no existen alumnos -->
+  <div *ngIf="ventas.length === 0" class="p-4 mt-4 text-sm text-gray-800 rounded-lg bg-gray-100" role="alert">
+    <span class="font-medium">Información:</span> No hay ventas registradas.
+  </div>
+
+</div>
+
+<br>
+
+
+<!-- Agregamos un *ngIf de seguridad -->
+<form *ngIf="formulario" [formGroup]="formulario" class="max-w-sm mx-auto">
+
+  <h1 class="text-3xl font-bold text-gray-900 mb-6">
+    Editar
+  </h1>
+
+  <div class="mb-5">
+    <label for="nombre" class="block mb-2.5 text-sm font-medium text-heading">Nombre</label>
+    <input formControlName="nombre" type="text" id="nombre" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body" placeholder="Nombre..." required />
+  </div>
+
+  <div class="mb-5">
+    <label for="numCompra" class="block mb-2.5 text-sm font-medium text-heading">Compradores</label>
+    <input formControlName="numCompra" type="number" id="numCompra" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body" placeholder="cantidad..." required />
+  </div>
+
+  <fieldset>
+    <legend class="sr-only">Tarjeta CINECO</legend>
+    <h1 class="block mb-2.5 text-sm font-medium text-heading">
+      Tarjeta CINECO
+    </h1>
+
+    <div class="flex items-center mb-4">
+      <!-- Corregimos los radio buttons: quitamos value="USA" y name="countries" -->
+      <input formControlName="cineco" [value]="true" id="cineco-si" type="radio" class="w-4 h-4 text-neutral-primary border-default-medium bg-neutral-secondary-medium rounded-full checked:border-brand focus:ring-2 focus:outline-none focus:ring-brand-subtle border border-default appearance-none">
+      <label for="cineco-si" class="select-none ms-2 text-sm font-medium text-heading">
+        Si
+      </label>
+    </div>
+
+    <div class="flex items-center mb-4">
+      <!-- Corregimos los radio buttons: quitamos value="Germany" y name="countries" -->
+      <input formControlName="cineco" [value]="false" id="cineco-no" type="radio" class="w-4 h-4 text-neutral-primary border-default-medium bg-neutral-secondary-medium rounded-full checked:border-brand focus:ring-2 focus:outline-none focus:ring-brand-subtle border border-default appearance-none">
+      <label for="cineco-no" class="select-none ms-2 text-sm font-medium text-heading">
+        No
+      </label>
+    </div>
+  </fieldset>
+
+  <div class="mb-5">
+    <label for="boletos" class="block mb-2.5 text-sm font-medium text-heading">Boletos</label>
+    <input formControlName="boletos" type="number" id="boletos" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body" placeholder="boletos..." required />
+  </div>
+
+  <button (click)="pagar()" type="button" class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Procesar</button>
+  <button (click)="salir()" type="button" class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Salir</button>
+</form>

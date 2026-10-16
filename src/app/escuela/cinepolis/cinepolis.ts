@@ -8,6 +8,8 @@ import { FormsModule, ReactiveFormsModule, FormControl, FormGroup, } from '@angu
   templateUrl: './cinepolis.html',
 })
 export class Cinepolis {
+  ventas: any[] = [];
+
   formulario!:FormGroup;
   respuesta:string = '';
   boleper:number = 0;
@@ -17,6 +19,7 @@ export class Cinepolis {
   aplica:string = '';
 
   ngOnInit():void{
+    this.cargarVentas()
     this.formulario = new FormGroup({
       nombre:new FormControl(''),
       numCompra:new FormControl(1),
@@ -24,6 +27,13 @@ export class Cinepolis {
       boletos:new FormControl(1),
     })
   }
+
+  cargarVentas(): void {
+  const datos = localStorage.getItem('ventas');
+  if (datos) {
+    this.ventas = JSON.parse(datos);
+  }
+}
 
   pagar():void{
 
@@ -54,6 +64,18 @@ export class Cinepolis {
       } else {
         this.aplica = 'no aplica'
       }
+
+      const nuevaVenta = {
+        nombre: name,
+        boletos: pases,
+        descuento: this.descuento,
+        tarjetaCineco: this.aplica,
+        total: this.pago
+      };
+
+      this.ventas.push({ ...nuevaVenta });
+
+      localStorage.setItem('ventas', JSON.stringify(this.ventas));
 
       this.respuesta = 'Cliente: ' + name + ' | Boletos: ' + pases + ' | Descuento del: ' + this.descuento + ' | Tarjeta CINECO: ' + this.aplica + ' | Total a pagar: $' + this.pago
 
