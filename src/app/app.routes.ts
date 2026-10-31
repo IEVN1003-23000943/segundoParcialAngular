@@ -62,6 +62,30 @@ export const routes: Routes = [
       }
     ]
   },
+  {
+    path: 'utl',
+    children:[
+      {
+        path: 'alumnos',
+        loadComponent:()=>
+          import('./UTL/ABCAlumnos/alumnos/alumnos').then(
+            (c)=>c.Alumnos
+          )
+      }
+    ]
+  },
+  {
+    path: 'utl',
+    children:[
+      {
+        path: 'maestros',
+        loadComponent:()=>
+          import('./UTL/ABCMaestros/maestros/maestros').then(
+            (c)=>c.Maestros
+          )
+      }
+    ]
+  },
 
   { path: '', redirectTo: 'admin', pathMatch: 'full' },
   { path: '**', redirectTo: 'admin' },
